@@ -49,15 +49,21 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
+// use of pre-save middleware to hash password before saving
+
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next;
   this.password = bcrypt.hash(this.password, 10);
   next();
 });
 
+// use of instance method to compare password from the old one
+
 userSchema.methods.isPasswordCorrect = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
+
+// use of instance method to generate access token and refresh token
 
 userSchema.methods.generateAccessToken = function () {
   return jwt.sign(
