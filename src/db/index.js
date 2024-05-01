@@ -8,12 +8,12 @@ const connectDB = async () => {
     );
     // console.log(connectionInstance.connection.host);
     console.log(
-      `\n MONGODB CONNECTION SUCCESSFUL !! DB HOST: , ${connectionInstance.connection.host}`
+      `\nMONGODB CONNECTION SUCCESSFUL !! DB HOST: , ${connectionInstance.connection.host}`
     );
   } catch (error) {
     console.error("MONGODB CONNECTION FAILED: ", error);
     process.exit(1);
-  }
+  } 
 };
 
 export default connectDB;
