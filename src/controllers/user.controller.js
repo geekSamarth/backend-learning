@@ -178,8 +178,8 @@ const logoutUser = asyncHandler(async (req, res) => {
   await User.findByIdAndUpdate(
     req.user._id,
     {
-      $set: {
-        refreshToken: "",
+      $unset: {
+        refreshToken: 1,            // this removes the refresh token field from the document
       },
     },
     {
